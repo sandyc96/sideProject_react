@@ -36,7 +36,7 @@ export default function App() {
         <SwiperSlide>
           <Grid container>
             <img
-              src='/sideProject_react/images/banner1.jpg'
+              src='/images/banner1.jpg'
               style={{
                 display: 'block',
                 width: '100%',
@@ -87,7 +87,7 @@ export default function App() {
         <SwiperSlide>
           <Grid container>
             <img
-              src='/sideProject_react/images/banner2.jpg'
+              src='/images/banner2.jpg'
               style={{
                 display: 'block',
                 width: '100%',
@@ -138,7 +138,7 @@ export default function App() {
         <SwiperSlide>
           <Grid container>
             <img
-              src='/sideProject_react/images/banner3.jpg'
+              src='/images/banner3.jpg'
               style={{
                 display: 'block',
                 width: '100%',

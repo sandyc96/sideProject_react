@@ -11,26 +11,11 @@ import SignIn from './component/SignIn';
 import CheckoutPage from './pages/CheckoutPage';
 import PrivateRoute from './PrivateRoute';
 import GlobalProvider from './GlobalProvider';
-import { useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import { googleLogout } from '@react-oauth/google';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleSuccess = (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse.credential);
-    setUser(decoded);
-  };
-
-  const handleLogout = () => {
-    googleLogout();
-    setUser(null);
-  };
-
   return (
     <>
-      <BrowserRouter basename='/sideProject_react'>
+      <BrowserRouter>
         <ScrollToTop />
         <GlobalProvider>
           <header>
@@ -50,16 +35,7 @@ function App() {
                 }
               />
               <Route path='/sign_up' element={<SignUp />} />
-              <Route
-                path='/login'
-                element={
-                  <SignIn
-                    user={user}
-                    onLoginSuccess={setUser}
-                    onLogout={handleLogout}
-                  />
-                }
-              />
+              <Route path='/login' element={<SignIn />} />
               <Route path='/cart' element={<CheckoutPage />} />
               <Route
                 path='*'
