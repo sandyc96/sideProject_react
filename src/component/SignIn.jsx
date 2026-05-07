@@ -15,7 +15,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 
-export default function SignIn({ user, onLoginSuccess, onLogout }) {
+export default function SignIn({ onLoginSuccess }) {
   const { setIsAuthenticated } = useAuthenticated();
 
   const location = useLocation();
@@ -24,6 +24,9 @@ export default function SignIn({ user, onLoginSuccess, onLogout }) {
   const pid = location.state && location.state.pId;
 
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
   const handleAuthLogin = () => {
     setIsAuthenticated(true);
     navigate('/account');
@@ -61,6 +64,15 @@ export default function SignIn({ user, onLoginSuccess, onLogout }) {
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
+      setIsAuthenticated(true);
+      setLoading(true);
+      navigate('/account');
+      if (shouldShow) {
+        navigate('/cart');
+      }
+      if (toProduct) {
+        navigate(`/new_in/${pid}`);
+      }
       const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
         headers: {
           Authorization: `Bearer ${tokenResponse.access_token}`,
@@ -68,6 +80,7 @@ export default function SignIn({ user, onLoginSuccess, onLogout }) {
       });
       const userInfo = await res.json();
       onLoginSuccess(userInfo);
+      setLoading(false);
     },
     onError: () => console.log('登入失敗'),
   });
@@ -179,20 +192,12 @@ export default function SignIn({ user, onLoginSuccess, onLogout }) {
           >
             登入
           </Button>
-          {user ? (
-            <div>
-              <img
-                src={user.picture}
-                width={32}
-                style={{ borderRadius: '50%' }}
-              />
-              <span>{user.name}</span>
-              <button onClick={onLogout}>登出</button>
-            </div>
+          {loading ? (
+            <span>載入中...</span>
           ) : (
-            <button
+            <Button
               onClick={() => login()}
-              style={{
+              sx={{
                 width: '100%',
                 padding: '10px 12px',
                 backgroundColor: '#fff',
@@ -228,7 +233,7 @@ export default function SignIn({ user, onLoginSuccess, onLogout }) {
                 />
               </svg>
               Google登入
-            </button>
+            </Button>
           )}
           <Typography variant='h2' sx={{ pt: 10 }}>
             還不是會員?

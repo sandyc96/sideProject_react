@@ -70,7 +70,7 @@ function a11yProps(index) {
   };
 }
 
-export default function Account() {
+export default function Account({ user }) {
   const { dateFormat, numFormat } = useFormat();
   const { addedFavorites, delFromFavorite } = useFavorite();
   const miniCartDispatch = useContext(MiniCartDispatchContext);
@@ -109,9 +109,9 @@ export default function Account() {
             alignItems: 'center',
           }}
         >
-          不是user01嗎?
+          不是{user ? user.name : 'user01'}嗎?
           <Button
-            href='/account'
+            href='/sideProject_react/account'
             variant='outlined'
             size='small'
             sx={{
