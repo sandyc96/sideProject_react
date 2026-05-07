@@ -65,7 +65,7 @@ export default function ProductCard() {
                   sx={{
                     px: 1,
                     py: { xs: 1, md: 2 },
-                    justifySelf: { xs: 'flex-start', sm: 'center' },
+                    justifySelf: 'center',
                     boxSizing: 'border-box',
                   }}
                 >

@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 export default function MyBreadcrumbs() {
   return (
     <>
-      <Breadcrumbs aria-label='breadcrumb' sx={{ width: '100%', py: 1.5 }}>
+      <Breadcrumbs
+        aria-label='breadcrumb'
+        sx={{ width: '100%', py: 1.5, display: { xs: 'none', md: 'block' } }}
+      >
         <Typography
           component={Link}
           to='/'

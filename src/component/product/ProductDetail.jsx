@@ -257,7 +257,7 @@ export default function ProductDetail({ handleClose }) {
             ))
           }
           arrow
-          placement='right'
+          placement='bottom'
           slotProps={{
             popper: {
               modifiers: [
@@ -279,6 +279,11 @@ export default function ProductDetail({ handleClose }) {
                 加入收藏清單
               </Typography>
             }
+            sx={{
+              width: { xs: '100%', md: 'auto' },
+              display: { xs: 'flex', md: 'inline-flex' },
+              justifyContent: { xs: 'center', md: 'flex-start' },
+            }}
             control={
               <Checkbox
                 disableRipple

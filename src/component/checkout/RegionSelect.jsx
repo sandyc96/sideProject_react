@@ -34,6 +34,13 @@ export default function RegionSelect() {
             value={selectedCountyId}
             label='選擇縣市'
             onChange={handleCountyChange}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: '50vh',
+                },
+              },
+            }}
           >
             {allCounties.map((county) => (
               <MenuItem key={county.HSN_NM} value={county.HSN_NM}>

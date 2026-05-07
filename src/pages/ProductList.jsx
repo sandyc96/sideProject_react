@@ -21,7 +21,7 @@ export default function ProductList() {
         direction='row'
         spacing={{ xs: 3, sm: 4 }}
         mx={{ xs: 3, sm: 4 }}
-        my={{ xs: 1, sm: 7 }}
+        my={{ xs: 2, sm: 7 }}
         width={{ xs: '85%', sm: '85%', md: '80%' }}
         display={{ md: 'flex' }}
         justifySelf={'center'}
